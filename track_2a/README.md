@@ -32,7 +32,24 @@ Fill in the [Makefile](Makefile) so that it works on a clean checkout. It is
 expected to run the project in a Docker container, since that is how the judges
 will run it, without relying on anything already installed on your machine.
 
-Requirements: `runtime, hardware, API keys, model weights`
+Requirements: Docker with Docker Compose and access to the provided Apertus
+endpoint. No model weights are required locally.
+
+Create a local `.env` from `.env.example` and set:
+
+```env
+LLM_NAME=...
+LLM_BASE_URL=...
+LLM_API_KEY=...
+```
+
+`make run` currently validates the Apertus configuration in Docker. Local
+tests run with:
+
+```bash
+uv sync
+make test
+```
 
 ## Data
 The `data/` directory must not exceed 100 MB.

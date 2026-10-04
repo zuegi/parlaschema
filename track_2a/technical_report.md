@@ -4,7 +4,7 @@ A deeper write-up than the README: what you built, how it works, and what the
 numbers say. Also check the specific submission requirements for your Academia
 challenge and add required information here.
 
-- **Track:** `Track 2A — challenge name`
+- **Track:** `Track 2A — OpenParlData`
 - **Event:** Online
 - **Team:** `team name` — `member`, `member`, `member`
 - **Demo:** `link to video, deployment, or notebook`
