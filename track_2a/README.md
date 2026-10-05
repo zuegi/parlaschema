@@ -51,6 +51,15 @@ uv sync
 make test
 ```
 
+## CI
+
+GitHub Actions runs on pull requests and pushes to `main`, using Python 3.12,
+uv 0.8.16 and `uv.lock` (`uv sync --frozen`, `uv run --frozen pytest -q`).
+It also builds the Docker image. **Check CLI startup in Docker** runs the explicit
+`check-config` command with dummy LLM settings and networking disabled, checking
+the entry point, imports and configuration format without calling a model.
+CI needs no real API keys and does not deploy or publish images.
+
 ## Data
 The `data/` directory must not exceed 100 MB.
 
