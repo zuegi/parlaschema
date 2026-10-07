@@ -100,6 +100,14 @@ session artifacts outside this repository. See [reference review](goldset.md)
 for draft scope and unresolved approvals. No heldout content informed schema or
 prompt changes; no schema, prompt, split or goldset was frozen by this review.
 
+The four development entries additionally record `development_detail_review`
+for an individual-page machine pass and private draft corrections. The page-3
+table in 922604 was recovered from visually checked layout text; chart axes and
+captions were checked but exact plotted annual values remain unresolved. This
+does not clear global pending flags or constitute human approval.
+See [development detail scope](goldset.md#development-only-machine-detail-pass).
+Heldout entries/drafts were not changed by this additional pass.
+
 From `track_2a/`, run `uv run --offline pytest` for manifest consistency and
 existing configuration tests. Tests read local JSON only; no source checks,
 downloads or API calls are performed. See [schema](schema.md) for document-scoped

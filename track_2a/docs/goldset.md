@@ -43,6 +43,44 @@ limitations, and conduct explicit human review. No verified goldset, publication
 authorization, full-sample accuracy or schema/goldset freeze follows from these
 drafts. Heldout annotation was not used to tune schema or prompts.
 
+### Development-only machine detail pass
+
+On 2026-10-07, all thirteen development pages were additionally inspected
+individually using saved local renders, with higher-resolution table/chart
+details for 922604. The four private drafts were corrected in place, with
+pre-detail backups and private per-document `development-detail-review.json`
+notes. Heldout artifact hashes were checked before/after; those files were not
+changed. No model endpoint, schema or prompt changes were involved.
+
+- 926587: explicit submitter/document-date context and question kinds strengthened.
+  Eight numbered questions remain; unnumbered introductory factor bullets are
+  treated as context, a coverage judgment still requiring human review. A
+  document date is not silently promoted to a filing date.
+- 902686: question 6's quote now excludes the merged page header, not just its
+  displayed text. Twelve numbered questions/subparts and submitter attribution
+  were checked. Institutional addressee remains ambiguous; another document
+  cannot supply missing evidence for this document.
+- 922604: table row/column relations were recovered in answer 1 using a visually
+  checked, exact Poppler layout excerpt. Its private page-3 evidence representation
+  explicitly supplements reading text with that excerpt; it is not an extra PDF
+  page. Both charts show nineteen years, 2007-2025, not the requested full range
+  from 2005. Captions and the staffing reference were retained; exact annual
+  ordinates have no point labels, so interpolation was not asserted as source
+  values. The answer collection stays partial. Cross-page answer 7/8's split word
+  was rejoined while preserving exact page quotes. Group links use numbered
+  headings; role/adoption-date evidence includes the government resolution,
+  not a session header alone.
+- 541615: links now quote repeated numbered question headings rather than only
+  answer prose. Unlinked preamble, answer 2 across pages 2/3, cover-month versus
+  adoption-day, and executive signers were checked. Additional consorts remain
+  unnamed and the submitter collection remains partial.
+
+All four retain `machine_draft`, `draft`, `review: null`, publication permission
+pending and partial operational outcomes. Source-supported corrections and
+page/quote validation do not establish full semantic completeness, exact chart
+data, human review or publication rights. The inspection index records the
+machine detail pass separately from these still-pending boundaries.
+
 ## Split and scope
 
 Manifest v2 fixes development affairs 340291, 336076, 228191 (four PDFs) and

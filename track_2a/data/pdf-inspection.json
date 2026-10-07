@@ -42,6 +42,16 @@
       "ocr_pages_processed": [],
       "layout_findings": [],
       "annotation_scope": "All eight core fields and role represented in private draft; eight top-level questions; no answer or parliamentary decision observed.",
+      "development_detail_review": {
+        "checked_on": "2026-10-07",
+        "reviewer_kind": "machine",
+        "physical_pages_viewed_individually": [1, 2],
+        "state": "machine_detail_pass",
+        "private_schema_and_quote_validation": "passed",
+        "human_review": "pending",
+        "corrections": ["Submitter name/role and document-date evidence strengthened with explicit source labels; question kinds recorded."],
+        "open_items": ["Document date does not independently establish filing date.", "Unnumbered introductory factor bullets treated as context; coverage judgment requires human review.", "Independent semantic/transcription review and publication authorization remain pending."]
+      },
       "annotation_state": "draft"
     },
     {
@@ -54,6 +64,16 @@
       "ocr_pages_processed": [],
       "layout_findings": ["Line hyphenation and spaced heading differ from API; page-2 header touches question 6 in reading text.", "Footnote URL is not a reliable verbatim transcription."],
       "annotation_scope": "All eight core fields and role represented in private draft; twelve top-level questions with subparts retained; addressee remains ambiguous.",
+      "development_detail_review": {
+        "checked_on": "2026-10-07",
+        "reviewer_kind": "machine",
+        "physical_pages_viewed_individually": [1, 2],
+        "state": "machine_detail_pass",
+        "private_schema_and_quote_validation": "passed",
+        "human_review": "pending",
+        "corrections": ["Question-6 evidence excludes merged page header, not only displayed original.", "Explicit submitter role supported; twelve question blocks and question-1 subparts checked."],
+        "open_items": ["Institutional addressee remains ambiguous; related response does not authorize inference.", "Document date retained, no inferred filing-date meaning.", "Independent semantic/transcription review and publication authorization remain pending."]
+      },
       "annotation_state": "draft"
     },
     {
@@ -66,6 +86,16 @@
       "ocr_pages_processed": [],
       "layout_findings": ["Page 3 table loses row/column relationships in reading order.", "Page 4 vector charts omit plotted yearly values and x-axis labels from PDF/API text; API places y-axis labels after surrounding answer text.", "Answer 7/8 crosses pages 4/5."],
       "annotation_scope": "All eight core fields and role represented in private draft; twelve questions, nine grouped answer blocks; executive_answer partial because chart values remain untranscribed.",
+      "development_detail_review": {
+        "checked_on": "2026-10-07",
+        "reviewer_kind": "machine",
+        "physical_pages_viewed_individually": [1, 2, 3, 4, 5],
+        "state": "machine_detail_pass",
+        "private_schema_and_quote_validation": "passed",
+        "human_review": "pending",
+        "corrections": ["Page-3 table row/column order recovered with visually checked exact layout excerpt in declared private page representation.", "Chart captions and staffing reference retained in joint answer 5/6; both x-axes checked as 2007-2025.", "Cross-page split word in answer 7/8 rejoined while preserving exact two-page quotes.", "Grouped response links use explicit numbered headings; submitter, executive role and adoption-date evidence strengthened."],
+        "open_items": ["Exact annual chart values have no point labels; interpolation is not exact source evidence. Joint answer 5/6 and executive_answer remain partial.", "Charts cover 2007-2025, not requested 2005-2025; no missing years fabricated.", "API axis-label order does not preserve PDF chart position.", "Addressee remains ambiguous; executive resolution is not a parliamentary decision.", "Independent semantic/transcription review and publication authorization remain pending."]
+      },
       "annotation_state": "draft"
     },
     {
@@ -78,6 +108,16 @@
       "ocr_pages_processed": [],
       "layout_findings": ["Footnote and page-number ordering differs from API; word-token agreement does not establish order."],
       "annotation_scope": "All eight core fields and role represented in private draft; five questions, preamble and five answers; submitters partial because consorts are unnamed; executive adoption not treated as parliamentary decision.",
+      "development_detail_review": {
+        "checked_on": "2026-10-07",
+        "reviewer_kind": "machine",
+        "physical_pages_viewed_individually": [1, 2, 3, 4],
+        "state": "machine_detail_pass",
+        "private_schema_and_quote_validation": "passed",
+        "human_review": "pending",
+        "corrections": ["Answer links now use repeated numbered question headings, not answer prose alone.", "Named submitter role supported by interpellation attribution; unnamed consorts remain partial/unenumerated_members.", "Cross-page answer 2, unlinked preamble, month/day precision and adoption meaning checked; executive signers excluded from submitters."],
+        "open_items": ["Unnamed consorts cannot be resolved from this document; no invented names.", "Independent semantic/transcription review and publication authorization remain pending."]
+      },
       "annotation_state": "draft"
     },
     {

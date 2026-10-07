@@ -190,3 +190,20 @@ def test_pdf_inspection_text_agreement_and_ocr_scope() -> None:
         assert doc["pdf_word_tokens_missing_from_api"] >= 0
         if doc["api_whitespace_stripped_text_equal"]:
             assert doc["pdf_word_tokens_missing_from_api"] == 0
+
+
+def test_detail_review_is_development_only_and_unapproved() -> None:
+    documents = json.loads(INSPECTION_PATH.read_text(encoding="utf-8"))["documents"]
+    reviewed = [doc for doc in documents if "development_detail_review" in doc]
+    assert {doc["document_id"] for doc in reviewed} == {926587, 902686, 922604, 541615}
+    assert sum(doc["page_count"] for doc in reviewed) == 13
+    for doc in reviewed:
+        detail = doc["development_detail_review"]
+        assert doc["split"] == "development" and doc["annotation_state"] == "draft"
+        assert detail["physical_pages_viewed_individually"] == list(range(1, doc["page_count"] + 1))
+        assert detail["checked_on"] == "2026-10-07"
+        assert detail["reviewer_kind"] == "machine"
+        assert detail["state"] == "machine_detail_pass"
+        assert detail["private_schema_and_quote_validation"] == "passed"
+        assert detail["human_review"] == "pending"
+        assert detail["corrections"] and detail["open_items"]
