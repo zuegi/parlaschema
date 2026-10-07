@@ -86,6 +86,11 @@ affairs/twelve PDFs. Held-out content must not inform schema or prompt tuning.
 Historical availability checks are not current parser or redistribution approval.
 All sixteen entries include a selection-reference `document_role`: eleven filings,
 three executive responses and two unknown roles; see [manifest semantics](docs/manifest.md).
+[`data/pdf-inspection.json`](data/pdf-inspection.json) records dated local machine
+checks of all sixteen PDFs (86 pages). It flags graphic and outlined-text omissions
+in PDF/API text, without granting parser or publication approval. Sixteen private
+machine drafts remain outside the repository, unapproved and semantically
+incomplete; see [review scope](docs/goldset.md).
 
 ## Schema and reference review
 

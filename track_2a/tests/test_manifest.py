@@ -64,6 +64,12 @@ EXPECTED_DOCUMENT_ROLES = {
     926587: "filing",
     926586: "filing",
 }
+INSPECTION_PATH = MANIFEST_PATH.with_name("pdf-inspection.json")
+EXPECTED_PAGE_COUNTS = {
+    926587: 2, 902686: 2, 922604: 5, 541615: 4,
+    926604: 1, 926592: 1, 925453: 1, 902692: 1, 902683: 1, 921072: 3,
+    902693: 1, 480176: 34, 540642: 19, 927204: 4, 926916: 4, 926586: 3,
+}
 
 
 def test_manifest_selection() -> None:
@@ -140,3 +146,47 @@ def test_document_roles_match_selection_reference() -> None:
     assert Counter(doc["document_role"] for doc in documents) == {
         "filing": 11, "executive_response": 3, "unknown": 2,
     }
+
+
+def test_pdf_inspection_selection_and_splits() -> None:
+    inspection = json.loads(INSPECTION_PATH.read_text(encoding="utf-8"))
+    documents = inspection["documents"]
+    manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))["documents"]
+    assert len(documents) == len({doc["document_id"] for doc in documents}) == 16
+    assert {doc["document_id"]: doc["page_count"] for doc in documents} == EXPECTED_PAGE_COUNTS
+    assert {doc["document_id"]: doc["split"] for doc in documents} == {
+        doc["document_id"]: doc["split"] for doc in manifest
+    }
+    for split, expected in inspection["groups"].items():
+        group = [doc for doc in documents if doc["split"] == split]
+        assert len(group) == expected["documents"] == expected["private_machine_drafts"]
+        assert sum(doc["page_count"] for doc in group) == expected["pages"]
+        assert expected["human_approved"] == 0
+
+
+def test_pdf_inspection_preserves_review_boundaries() -> None:
+    inspection = json.loads(INSPECTION_PATH.read_text(encoding="utf-8"))
+    assert inspection["version"] == "1"
+    assert inspection["checked_on"] == "2026-10-07"
+    assert inspection["reviewer_kind"] == "machine"
+    assert inspection["verification_basis"] == "retrieved_bytes_and_local_tools"
+    for boundary in ("full_character_level_visual_review", "semantic_completeness",
+                     "human_review", "publication_permission"):
+        assert inspection["boundaries"][boundary] == "pending"
+    assert inspection["boundaries"]["heldout_used_for_prompt_or_schema_tuning"] is False
+    assert inspection["boundaries"]["private_sources_and_annotations_in_repository"] is False
+    assert all(doc["annotation_state"] == "draft" for doc in inspection["documents"])
+
+
+def test_pdf_inspection_text_agreement_and_ocr_scope() -> None:
+    documents = json.loads(INSPECTION_PATH.read_text(encoding="utf-8"))["documents"]
+    assert {doc["document_id"] for doc in documents
+            if doc["api_whitespace_stripped_text_equal"]} == {926587, 927204, 926916, 926586}
+    assert {doc["document_id"]: doc["poppler_blank_text_pages"] for doc in documents
+            if doc["poppler_blank_text_pages"]} == {480176: [32, 33, 34], 540642: [19]}
+    for doc in documents:
+        assert doc["ocr_pages_processed"] == doc["poppler_blank_text_pages"]
+        assert all(1 <= page <= doc["page_count"] for page in doc["ocr_pages_processed"])
+        assert doc["pdf_word_tokens_missing_from_api"] >= 0
+        if doc["api_whitespace_stripped_text_equal"]:
+            assert doc["pdf_word_tokens_missing_from_api"] == 0

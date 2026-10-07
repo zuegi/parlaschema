@@ -5,6 +5,44 @@ not a verified goldset. No real annotated references or parliamentary excerpts
 are published here. Test fixtures are synthetic, including their reviewer names,
 dates, document IDs and placeholder hashes; they are not actual human approvals.
 
+## Private machine drafts from the 2026-10-07 inspection
+
+Sixteen real-document candidates were saved outside the repository in the
+reviewing session's persistent `files/private_pdf_review/<document_id>/`
+artifacts. Each directory has `reference-draft.json`, `document-result.json`
+and `annotation-pages.json`, alongside private retrieved source files. This
+machine-specific location is not a portable repository dataset. The repository
+contains only the metadata/findings index
+[`data/pdf-inspection.json`](../data/pdf-inspection.json), not these annotations,
+quotes or source content.
+
+Every candidate is `candidate_origin: machine_draft`, `state: draft`,
+`publication_permission: pending`, with no human review. All passed
+`ReferenceAnnotation` structural validation and `validate_provenance` against
+their declared physical-page text. All operational results remain `partial`,
+not accepted completed extractions or measured successes. Exact quote occurrence
+does not prove interpretation, coverage, correct transcription or legal meaning.
+
+Development candidates cover the eight fields and separate role. Document 922604
+has a partial answer collection because chart values remain untranscribed;
+541615 has partial submitters because additional consorts are unnamed. Document
+902686 retains an ambiguous addressee rather than inferring an institution.
+Missing document-scoped answers/decisions are machine judgments requiring review.
+
+Ten shorter heldout candidates have field/role drafts; the two long legislative
+documents (480176, 540642) have only partial context/adoption-request drafts.
+Their legislative articles, detailed tables and historical interventions/outcomes
+remain unannotated. Locally OCR-recovered proposal dates are provisional, without
+an inferred adoption meaning. Draft legal wording is not evidence that parliament
+already adopted a proposal. Their machine role interpretation `other` does not
+overwrite the frozen manifest's selection-reference `unknown`.
+
+Remaining work: verify every field and unknown against original pages, reconstruct
+charts/tables and outlined legislative appendices, resolve coverage/transcription
+limitations, and conduct explicit human review. No verified goldset, publication
+authorization, full-sample accuracy or schema/goldset freeze follows from these
+drafts. Heldout annotation was not used to tune schema or prompts.
+
 ## Split and scope
 
 Manifest v2 fixes development affairs 340291, 336076, 228191 (four PDFs) and
