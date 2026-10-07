@@ -84,6 +84,8 @@ The `data/` directory must not exceed 100 MB.
 assignment by affair: three development affairs/four PDFs, eleven held-out
 affairs/twelve PDFs. Held-out content must not inform schema or prompt tuning.
 Historical availability checks are not current parser or redistribution approval.
+All sixteen entries include a selection-reference `document_role`: eleven filings,
+three executive responses and two unknown roles; see [manifest semantics](docs/manifest.md).
 
 ## Schema and reference review
 

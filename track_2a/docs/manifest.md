@@ -6,8 +6,19 @@ It is neither a goldset nor Apertus output. Original affair types are preserved;
 they describe the affair, not the document role.
 
 Each entry records numeric affair/document IDs, parliament, language, government
-level, original type, original `source_url`, OpenParlData mirror `download_url`,
+level, original type, `document_role`, original `source_url`, OpenParlData mirror `download_url`,
 affair document-list `metadata_api_url`, and historical checks.
+
+`document_role` records the selection-reference classification from
+`machbarkeit/OpenParlData Dokumentauswahl.md` (external to this repository),
+not a verified extraction or gold annotation. There are eleven `filing` entries,
+three `executive_response` entries (922604, 921072, 541615), and two `unknown`
+entries (480176, 540642). The latter selection descriptions do not establish
+a filing or response role; the affair type alone cannot establish one.
+`unknown` is a flat manifest sentinel, not a `DocumentRole` literal in the
+extraction schema. That schema represents unknown roles through field status
+`unknown`, null value and an explicit reason. No conversion or role verification
+pipeline is implemented.
 
 `verification_basis: historical_reference` means all checks were transcribed
 from the selection reference dated 2026-10-05, not rerun for this manifest.

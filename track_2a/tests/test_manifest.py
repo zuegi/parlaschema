@@ -46,6 +46,24 @@ SOURCE_TEMPLATES = {
 }
 MANIFEST_PATH = Path(__file__).resolve().parents[1] / "data" / "manifest.json"
 DEVELOPMENT_AFFAIRS = {340291, 336076, 228191}
+EXPECTED_DOCUMENT_ROLES = {
+    926604: "filing",
+    926592: "filing",
+    925453: "filing",
+    902692: "filing",
+    902686: "filing",
+    922604: "executive_response",
+    902683: "filing",
+    921072: "executive_response",
+    902693: "filing",
+    541615: "executive_response",
+    480176: "unknown",
+    540642: "unknown",
+    927204: "filing",
+    926916: "filing",
+    926587: "filing",
+    926586: "filing",
+}
 
 
 def test_manifest_selection() -> None:
@@ -72,6 +90,7 @@ def assert_document(document: dict, expected: tuple) -> None:
         "affair_id": affair,
         "split": "development" if affair in DEVELOPMENT_AFFAIRS else "heldout",
         "document_id": doc_id,
+        "document_role": EXPECTED_DOCUMENT_ROLES[doc_id],
         "parliament": parliament,
         "language": language,
         "government_level": "canton",
@@ -110,4 +129,14 @@ def test_split_keeps_all_documents_of_each_affair_together() -> None:
     assert Counter(doc["split"] for doc in documents) == {"development": 4, "heldout": 12}
     assert Counter(next(iter(splits)) for splits in splits_by_affair.values()) == {
         "development": 3, "heldout": 11,
+    }
+
+
+def test_document_roles_match_selection_reference() -> None:
+    documents = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))["documents"]
+    assert {doc["document_id"]: doc["document_role"] for doc in documents} == (
+        EXPECTED_DOCUMENT_ROLES
+    )
+    assert Counter(doc["document_role"] for doc in documents) == {
+        "filing": 11, "executive_response": 3, "unknown": 2,
     }
