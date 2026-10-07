@@ -45,12 +45,13 @@ SOURCE_TEMPLATES = {
     "TI": "https://www4.ti.ch/user_librerie/php/GC/allegato.php?allid={}",
 }
 MANIFEST_PATH = Path(__file__).resolve().parents[1] / "data" / "manifest.json"
+DEVELOPMENT_AFFAIRS = {340291, 336076, 228191}
 
 
 def test_manifest_selection() -> None:
     manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     documents = manifest["documents"]
-    assert manifest["version"] == "1"
+    assert manifest["version"] == "2"
     assert manifest["verification_basis"] == "historical_reference"
     assert manifest["pdf_redistribution_rights"] == "pending"
     assert manifest["parser_and_scan_suitability"] == "pending"
@@ -69,6 +70,7 @@ def assert_document(document: dict, expected: tuple) -> None:
     affair, doc_id, parliament, language, affair_type, size, source, mirror = expected
     assert {key: value for key, value in document.items() if not key.endswith("_check")} == {
         "affair_id": affair,
+        "split": "development" if affair in DEVELOPMENT_AFFAIRS else "heldout",
         "document_id": doc_id,
         "parliament": parliament,
         "language": language,
@@ -94,4 +96,18 @@ def assert_checks(document: dict, parliament: str, size: int) -> None:
         "fully_retrieved": True,
         "pdf_signature_verified": True,
         "size_bytes": size,
+    }
+
+
+def test_split_keeps_all_documents_of_each_affair_together() -> None:
+    documents = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))["documents"]
+    splits_by_affair: dict[int, set[str]] = {}
+    for document in documents:
+        splits_by_affair.setdefault(document["affair_id"], set()).add(document["split"])
+    assert all(len(splits) == 1 for splits in splits_by_affair.values())
+    assert {affair for affair, splits in splits_by_affair.items()
+            if splits == {"development"}} == DEVELOPMENT_AFFAIRS
+    assert Counter(doc["split"] for doc in documents) == {"development": 4, "heldout": 12}
+    assert Counter(next(iter(splits)) for splits in splits_by_affair.values()) == {
+        "development": 3, "heldout": 11,
     }
