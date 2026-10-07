@@ -1,0 +1,1171 @@
+{
+  "$defs": {
+    "AffairDate": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "\\S",
+          "title": "Id",
+          "type": "string"
+        },
+        "meaning": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Fact_Literal__document_date____filed____executive_response_adopted____parliamentary_decision___"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "value": {
+          "$ref": "#/$defs/Fact_NormalizedDate_"
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ],
+      "title": "AffairDate",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "exclusiveMinimum": 0,
+          "title": "Document Id",
+          "type": "integer"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "quote": {
+          "pattern": "\\S",
+          "title": "Quote",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "quote"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "ExecutiveAnswer": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "\\S",
+          "title": "Id",
+          "type": "string"
+        },
+        "question_links": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ItemLinks"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "text": {
+          "$ref": "#/$defs/openparl_extractor__schema__Fact_Annotated_str__StringConstraints____1"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "title": "ExecutiveAnswer",
+      "type": "object"
+    },
+    "ExtractedField_Fact_Literal__filing____executive_response____other____": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_in_document",
+                "ambiguous",
+                "unreadable",
+                "incomplete_source",
+                "unenumerated_members"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "known",
+            "partial",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Fact_Literal__filing____executive_response____other___"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "title": "ExtractedField[Fact[Literal['filing', 'executive_response', 'other']]]",
+      "type": "object"
+    },
+    "ExtractedField_list_AffairDate__": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_in_document",
+                "ambiguous",
+                "unreadable",
+                "incomplete_source",
+                "unenumerated_members"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "known",
+            "partial",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/AffairDate"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "title": "ExtractedField[list[AffairDate]]",
+      "type": "object"
+    },
+    "ExtractedField_list_ExecutiveAnswer__": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_in_document",
+                "ambiguous",
+                "unreadable",
+                "incomplete_source",
+                "unenumerated_members"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "known",
+            "partial",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/ExecutiveAnswer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "title": "ExtractedField[list[ExecutiveAnswer]]",
+      "type": "object"
+    },
+    "ExtractedField_list_Fact_Annotated_str__StringConstraints____": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_in_document",
+                "ambiguous",
+                "unreadable",
+                "incomplete_source",
+                "unenumerated_members"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "known",
+            "partial",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/openparl_extractor__schema__Fact_Annotated_str__StringConstraints____1"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "title": "ExtractedField[list[Fact[Annotated[str, StringConstraints]]]]",
+      "type": "object"
+    },
+    "ExtractedField_list_ParliamentaryDecision__": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_in_document",
+                "ambiguous",
+                "unreadable",
+                "incomplete_source",
+                "unenumerated_members"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "known",
+            "partial",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/ParliamentaryDecision"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "title": "ExtractedField[list[ParliamentaryDecision]]",
+      "type": "object"
+    },
+    "ExtractedField_list_QuestionOrRequest__": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_in_document",
+                "ambiguous",
+                "unreadable",
+                "incomplete_source",
+                "unenumerated_members"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "known",
+            "partial",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/QuestionOrRequest"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "title": "ExtractedField[list[QuestionOrRequest]]",
+      "type": "object"
+    },
+    "ExtractedField_list_Submitter__": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_in_document",
+                "ambiguous",
+                "unreadable",
+                "incomplete_source",
+                "unenumerated_members"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "known",
+            "partial",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Submitter"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "title": "ExtractedField[list[Submitter]]",
+      "type": "object"
+    },
+    "Fact_Literal__document_date____filed____executive_response_adopted____parliamentary_decision___": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized": {
+          "anyOf": [
+            {
+              "enum": [
+                "document_date",
+                "filed",
+                "executive_response_adopted",
+                "parliamentary_decision"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized"
+        },
+        "original": {
+          "pattern": "\\S",
+          "title": "Original",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "original",
+        "sources"
+      ],
+      "title": "Fact[Literal['document_date', 'filed', 'executive_response_adopted', 'parliamentary_decision']]",
+      "type": "object"
+    },
+    "Fact_Literal__filing____executive_response____other___": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized": {
+          "anyOf": [
+            {
+              "enum": [
+                "filing",
+                "executive_response",
+                "other"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized"
+        },
+        "original": {
+          "pattern": "\\S",
+          "title": "Original",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "original",
+        "sources"
+      ],
+      "title": "Fact[Literal['filing', 'executive_response', 'other']]",
+      "type": "object"
+    },
+    "Fact_Literal__person____organization___": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized": {
+          "anyOf": [
+            {
+              "enum": [
+                "person",
+                "organization"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized"
+        },
+        "original": {
+          "pattern": "\\S",
+          "title": "Original",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "original",
+        "sources"
+      ],
+      "title": "Fact[Literal['person', 'organization']]",
+      "type": "object"
+    },
+    "Fact_Literal__question____request___": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized": {
+          "anyOf": [
+            {
+              "enum": [
+                "question",
+                "request"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized"
+        },
+        "original": {
+          "pattern": "\\S",
+          "title": "Original",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "original",
+        "sources"
+      ],
+      "title": "Fact[Literal['question', 'request']]",
+      "type": "object"
+    },
+    "Fact_Literal__submitter____co_submitter____filing_signatory___": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized": {
+          "anyOf": [
+            {
+              "enum": [
+                "submitter",
+                "co_submitter",
+                "filing_signatory"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized"
+        },
+        "original": {
+          "pattern": "\\S",
+          "title": "Original",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "original",
+        "sources"
+      ],
+      "title": "Fact[Literal['submitter', 'co_submitter', 'filing_signatory']]",
+      "type": "object"
+    },
+    "Fact_NormalizedDate_": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NormalizedDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "original": {
+          "pattern": "\\S",
+          "title": "Original",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "original",
+        "sources"
+      ],
+      "title": "Fact[NormalizedDate]",
+      "type": "object"
+    },
+    "ItemLinks": {
+      "additionalProperties": false,
+      "properties": {
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "target_ids": {
+          "items": {
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Target Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "target_ids",
+        "sources"
+      ],
+      "title": "ItemLinks",
+      "type": "object"
+    },
+    "NormalizedDate": {
+      "additionalProperties": false,
+      "properties": {
+        "iso": {
+          "pattern": "\\S",
+          "title": "Iso",
+          "type": "string"
+        },
+        "precision": {
+          "enum": [
+            "day",
+            "month",
+            "year"
+          ],
+          "title": "Precision",
+          "type": "string"
+        }
+      },
+      "required": [
+        "iso",
+        "precision"
+      ],
+      "title": "NormalizedDate",
+      "type": "object"
+    },
+    "ParliamentaryDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/openparl_extractor__schema__Fact_Annotated_str__StringConstraints____1"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "date_links": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ItemLinks"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "id": {
+          "pattern": "\\S",
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "$ref": "#/$defs/openparl_extractor__schema__Fact_Annotated_str__StringConstraints____1"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "title": "ParliamentaryDecision",
+      "type": "object"
+    },
+    "QuestionOrRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "\\S",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Fact_Literal__question____request___"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "text": {
+          "$ref": "#/$defs/openparl_extractor__schema__Fact_Annotated_str__StringConstraints____1"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "title": "QuestionOrRequest",
+      "type": "object"
+    },
+    "Submitter": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Fact_Literal__person____organization___"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "name": {
+          "$ref": "#/$defs/openparl_extractor__schema__Fact_Annotated_str__StringConstraints____1"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Fact_Literal__submitter____co_submitter____filing_signatory___"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "Submitter",
+      "type": "object"
+    },
+    "openparl_extractor__schema__ExtractedField_Fact_Annotated_str__StringConstraints_____1": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_in_document",
+                "ambiguous",
+                "unreadable",
+                "incomplete_source",
+                "unenumerated_members"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "known",
+            "partial",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/openparl_extractor__schema__Fact_Annotated_str__StringConstraints____2"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "title": "ExtractedField[Fact[Annotated[str, StringConstraints]]]",
+      "type": "object"
+    },
+    "openparl_extractor__schema__ExtractedField_Fact_Annotated_str__StringConstraints_____2": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_in_document",
+                "ambiguous",
+                "unreadable",
+                "incomplete_source",
+                "unenumerated_members"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "known",
+            "partial",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/openparl_extractor__schema__Fact_Annotated_str__StringConstraints____1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "title": "ExtractedField[Fact[Annotated[str, StringConstraints]]]",
+      "type": "object"
+    },
+    "openparl_extractor__schema__Fact_Annotated_str__StringConstraints____1": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized": {
+          "anyOf": [
+            {
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized"
+        },
+        "original": {
+          "pattern": "\\S",
+          "title": "Original",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "original",
+        "sources"
+      ],
+      "title": "Fact[Annotated[str, StringConstraints]]",
+      "type": "object"
+    },
+    "openparl_extractor__schema__Fact_Annotated_str__StringConstraints____2": {
+      "additionalProperties": false,
+      "properties": {
+        "normalized": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_-]*:[a-z][a-z0-9_-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized"
+        },
+        "original": {
+          "pattern": "\\S",
+          "title": "Original",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "original",
+        "sources"
+      ],
+      "title": "Fact[Annotated[str, StringConstraints]]",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "addressed_body": {
+      "$ref": "#/$defs/ExtractedField_list_Fact_Annotated_str__StringConstraints____"
+    },
+    "affair_id": {
+      "exclusiveMinimum": 0,
+      "title": "Affair Id",
+      "type": "integer"
+    },
+    "affair_type": {
+      "$ref": "#/$defs/openparl_extractor__schema__ExtractedField_Fact_Annotated_str__StringConstraints_____1"
+    },
+    "dates": {
+      "$ref": "#/$defs/ExtractedField_list_AffairDate__"
+    },
+    "decision": {
+      "$ref": "#/$defs/ExtractedField_list_ParliamentaryDecision__"
+    },
+    "document_id": {
+      "exclusiveMinimum": 0,
+      "title": "Document Id",
+      "type": "integer"
+    },
+    "document_role": {
+      "$ref": "#/$defs/ExtractedField_Fact_Literal__filing____executive_response____other____"
+    },
+    "executive_answer": {
+      "$ref": "#/$defs/ExtractedField_list_ExecutiveAnswer__"
+    },
+    "language": {
+      "pattern": "\\S",
+      "title": "Language",
+      "type": "string"
+    },
+    "parliament": {
+      "pattern": "\\S",
+      "title": "Parliament",
+      "type": "string"
+    },
+    "question_or_request": {
+      "$ref": "#/$defs/ExtractedField_list_QuestionOrRequest__"
+    },
+    "schema_version": {
+      "const": "0.1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "submitters": {
+      "$ref": "#/$defs/ExtractedField_list_Submitter__"
+    },
+    "title": {
+      "$ref": "#/$defs/openparl_extractor__schema__ExtractedField_Fact_Annotated_str__StringConstraints_____2"
+    }
+  },
+  "required": [
+    "schema_version",
+    "affair_id",
+    "document_id",
+    "parliament",
+    "language",
+    "document_role",
+    "affair_type",
+    "title",
+    "submitters",
+    "addressed_body",
+    "question_or_request",
+    "executive_answer",
+    "decision",
+    "dates"
+  ],
+  "title": "DocumentExtraction",
+  "type": "object"
+}

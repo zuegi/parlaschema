@@ -32,11 +32,15 @@ compatibility, scan/born-digital status, OCR needs, page counts, text order,
 tables and attachments remain unverified. Source checks do not prove successful
 extraction.
 
-No development/evaluation split is assigned. A later split must group by
-`affair_id`, keeping related documents together (notably 336076 and 336073).
+Manifest version 2 adds `split` to each document without changing frozen selection
+metadata or historical checks. Split groups by `affair_id`: development affairs
+340291, 336076 and 228191 comprise four PDFs; the other eleven affairs comprise
+twelve held-out PDFs. Both documents of 336076 are development; both documents
+of 336073 are held out. Do not inspect held-out content for schema or prompt tuning.
 The sample covers cantonal sources only; it does not establish multi-level
 coverage.
 
 From `track_2a/`, run `uv run --offline pytest` for manifest consistency and
 existing configuration tests. Tests read local JSON only; no source checks,
-downloads or API calls are performed.
+downloads or API calls are performed. See [schema](schema.md) for document-scoped
+extraction and [reference review](goldset.md) for annotation/publication boundaries.
