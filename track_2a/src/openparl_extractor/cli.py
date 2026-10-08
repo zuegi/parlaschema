@@ -2,6 +2,7 @@ import argparse
 import sys
 
 from openparl_extractor.config import ConfigError, load_llm_config
+from openparl_extractor.scoped_cli import add_command, extract
 
 
 def check_config() -> int:
@@ -18,9 +19,12 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="openparl-extractor")
     subcommands = parser.add_subparsers(dest="command", required=True)
     subcommands.add_parser("check-config", help="validate Apertus LLM configuration")
+    add_command(subcommands)
     args = parser.parse_args()
     if args.command == "check-config":
         return check_config()
+    if args.command == "extract-scope-v02":
+        return extract(args)
     return 2
 
 

@@ -1,0 +1,11 @@
+{
+  "affair_id": 101,
+  "document_id": 101,
+  "parliament": "ZZ",
+  "language": "en",
+  "pages": [
+    "1. Which repairs are needed?\n2. Who pays?\nUnrelated text.\nFootnote A: include bridge safety.\nFootnote B: specify funding.\n",
+    "3. List the measures and\n",
+    "their costs.\n"
+  ]
+}

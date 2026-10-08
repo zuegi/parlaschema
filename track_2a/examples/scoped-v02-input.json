@@ -1,0 +1,10 @@
+{
+  "affair_id": 10,
+  "document_id": 100,
+  "parliament": "ZZ",
+  "language": "en",
+  "pages": [
+    "Example Assembly\nInterpellation\nTitle: Bridge repairs\nSubmitted by Alex Example\nDate: May 2030\nThe Example Council is asked:\n1. When will repairs start?\n   a. What is the budget?\n",
+    "2. Who will pay?\nBackground statistics: 2021.\n"
+  ]
+}

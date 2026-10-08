@@ -97,8 +97,29 @@ incomplete; see [review scope](docs/goldset.md).
 Schema v0.1 describes one document with eight required core fields, separate
 document role, source-backed originals/normalizations and explicit
 known/partial/unknown states. See [field semantics](docs/schema.md) and
-[private reference review](docs/goldset.md). Affair merging, real verified
-gold annotations, extraction pipeline and evaluator are not implemented.
+[private reference review](docs/goldset.md). Affair merging, public real verified
+gold annotations, full PDF extraction pipeline and evaluator are not implemented.
+
+An explicit [schema v0.2](docs/schema-v0.2.md) is available alongside v0.1.
+It separates original text from evidenced classifications, retains typed date
+normalization and adds the `debated` date meaning. Import `schema_v02` and use
+`schema_export_v02` explicitly; existing defaults and reference models remain
+v0.1. These schema additions do not migrate references or switch existing defaults.
+
+The explicit [v0.2 review contract](docs/reference-v0.2.md) requires a versioned
+human assessment of every present text, classification, date normalization and
+link. It does not transfer existing approvals or modify private references.
+
+An opt-in [two-task scoped v0.2 pipeline](docs/scoped-pipeline-v0.2.md) handles
+metadata and questions from supplied page text. Answers, decisions and links stay
+unprocessed; scoped acceptance is not full extraction or semantic approval.
+Offline tests mock HTTP; actual model calls require separate authorization.
+Its explicit `--control` option requests the identical scope in one call with an
+8,192-token default; the two-call default remains unchanged.
+Both arms use explicit `text_spans` lists for disjoint or cross-page text,
+joining exact substrings with `"\n\n"` and requiring evidence for every segment.
+Legacy scoped `text_span` requests must migrate explicitly; domain/review models
+and exports are unchanged.
 
 Regenerate the versioned JSON Schema from locked Pydantic:
 
