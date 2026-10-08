@@ -24,3 +24,9 @@ Evidence-first: a later model step only selects span ids and closed categories; 
 `uv run openparl-extractor extract-source file.pdf --document-id 922604 [--affair-id N] [--out-dir output/source]`
 
 Output goes to `output/` (git-ignored). PDFs are not committed (redistribution rights unclear).
+
+## Phase 2: span-id selection
+
+`span_selection.py`, `selection_run.py`; CLI `select-fields source.json... [--out-dir output/selection]` (needs `LLM_NAME`, `LLM_BASE_URL`, `LLM_API_KEY`; max 12 requests).
+
+One request per field (`title`, `submitters`, `question_or_request`). The model returns only `status` (known/partial/unknown), `reason`, and `blocks[]` of `span_ids` (+ `kind` question/request or null for `question_or_request`). Code validates (ids exist, ascending without overlap, status/id consistency, kind enum, title = one block) and derives text via `reconstruct_text`, whitespace-normalised; the leading question number is removed for `question_or_request`. No retry/repair/fallback; failed requests are `failed`, never `unknown`. Each request logs payload hash, sent body (no key), raw response, usage and duration under `output/`. Technical validity only — correctness is reviewed manually.
