@@ -25,3 +25,7 @@ build/
 .DS_Store
 .idea/
 .vscode/
+
+# Local extraction output and source PDFs
+output/
+*.pdf
