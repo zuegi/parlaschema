@@ -164,8 +164,8 @@ def _check_blocks_disjoint_and_ordered(document: SourceDocument, selection: Sele
 
 def build_field_result(document: SourceDocument, field: FieldName, selection: Selection) -> FieldResult:
     _check_blocks_disjoint_and_ordered(document, selection)
-    if field == "title" and len(selection.blocks) != 1:
-        raise SelectionError("title must be exactly one block")
+    if field == "title" and len(selection.blocks) > 1:
+        raise SelectionError("title must be a single block")
     lookup = document.spans_by_id()
     values = []
     for block in selection.blocks:

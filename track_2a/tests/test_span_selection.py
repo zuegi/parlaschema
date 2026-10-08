@@ -109,7 +109,7 @@ def test_kind_enum_and_scope():
 def test_title_must_be_single_block(document):
     a, b, *_ = ids(document)
     s = parse_selection("title", sel("known", [{"span_ids": [a]}, {"span_ids": [b]}]))
-    with pytest.raises(SelectionError, match="one block"):
+    with pytest.raises(SelectionError, match="single block"):
         build_field_result(document, "title", s)
 
 
