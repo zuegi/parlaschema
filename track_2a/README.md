@@ -100,6 +100,11 @@ known/partial/unknown states. See [field semantics](docs/schema.md) and
 [private reference review](docs/goldset.md). Affair merging, real verified
 gold annotations, extraction pipeline and evaluator are not implemented.
 
+The separate [offline feasibility assessment](docs/feasibility.md) distinguishes
+source limitations, schema representability and extraction quality without
+changing schema v0.1. Its tests are synthetic; real Dev atlas/profile drafts stay
+private and do not establish a goldset or working converter.
+
 Regenerate the versioned JSON Schema from locked Pydantic:
 
 ```bash
