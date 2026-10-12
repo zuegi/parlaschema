@@ -68,6 +68,33 @@ uv run --frozen pytest -q tests/test_schema_export.py
 
 Alternatively, `make test` runs the full suite from `track_2a/`.
 
+## Offline block classification precursor
+
+The scoped [block classification contract and decision sheet](docs/block-classification.md)
+separates source-bound candidate blocks from category-only decisions. It is not
+domain extraction or a PDF converter. Run the entirely synthetic offline replay
+from `track_2a/`:
+
+```bash
+uv run --frozen openparl-extractor evaluate-blocks tests/fixtures/block-replay-synthetic.json
+```
+
+No model calls, LLM configuration or live transport are used. Counts include
+every attempt, separate abstention/structure/transport errors and diagnostic
+category/language groups. Fake responses test the harness, not Apertus quality.
+Real baseline human review, procedure, budget and success criterion must be
+approved separately before any future live test.
+
+An [exploratory runner](docs/exploratory-block-test.md) can prepare exactly 18
+private inputs against separate provisional agent labels. `prepare-block-test`
+defaults to no-network dry-run; actual calls require explicit plan-bound
+approval, current prices, a monetary ceiling and `--allow-network`.
+No live experiment or human gold approval is implied by this tooling.
+
+The [versioned category-word opt-in](docs/category-word-contract.md) accepts one
+strict vocabulary word and serializes the typed result in code. JSON remains the
+default; no autodetection, fallback or retrospective rescoring.
+
 ## CI
 
 GitHub Actions runs on pull requests and pushes to `main`, using Python 3.12,

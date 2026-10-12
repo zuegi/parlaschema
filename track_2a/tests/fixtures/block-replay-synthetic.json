@@ -1,0 +1,49 @@
+{
+  "version": "block-classification-replay-v0.1",
+  "label_status": "synthetic",
+  "attempts_per_case": 1,
+  "cases": [
+    {
+      "block": {
+        "block_id": "synthetic-de",
+        "language": "de",
+        "source": {
+          "document_id": 100,
+          "text_representation": "synthetic-demo-v1",
+          "pages": ["Kosten?"]
+        },
+        "ranges": [{"page": 1, "start": 0, "end": 7}]
+      },
+      "expected": "question",
+      "responses": [{"raw": "{\"category\":\"question\"}"}]
+    },
+    {
+      "block": {
+        "block_id": "synthetic-fr",
+        "language": "fr",
+        "source": {
+          "document_id": 101,
+          "text_representation": "synthetic-demo-v1",
+          "pages": ["Signature"]
+        },
+        "ranges": [{"page": 1, "start": 0, "end": 9}]
+      },
+      "expected": "other",
+      "responses": [{"raw": "{\"category\":\"unclear\"}"}]
+    },
+    {
+      "block": {
+        "block_id": "synthetic-it",
+        "language": "it",
+        "source": {
+          "document_id": 102,
+          "text_representation": "synthetic-demo-v1",
+          "pages": ["Motivazione"]
+        },
+        "ranges": [{"page": 1, "start": 0, "end": 11}]
+      },
+      "expected": "reasoning",
+      "responses": [{"transport_error": "synthetic timeout"}]
+    }
+  ]
+}
