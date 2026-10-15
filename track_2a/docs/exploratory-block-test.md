@@ -1,5 +1,9 @@
 # Exploratory block test preparation (not authorized to run)
 
+This is a tooling/procedure reference, not a claim that no historical calls
+took place. Completed diagnostics are summarized in the
+[technical report](../technical_report.md); no new or repeated calls are authorized.
+
 This runner is an exploratory comparison against **separate provisional agent
 labels**, not human gold, a held-out evaluation, document segmentation or track
 acceptance. It is scoped to exactly 18 distinct prepared inputs, **one HTTP

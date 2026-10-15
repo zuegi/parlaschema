@@ -1,4 +1,8 @@
-# Scoped block classification v0.1 (offline only)
+# Scoped block classification v0.1 (offline core)
+
+The procedure sheet below is a historical proposal, not the executed
+diagnostic matrix or permission for new calls. Historical results and the
+current incomplete submission scope are in [the technical report](../technical_report.md).
 
 This is a separate precursor, **not** eight-field domain extraction, document
 selection, a PDF/OCR pipeline, document profiles, or a converter. Existing

@@ -1,5 +1,10 @@
 # Academia Challenges
 
+**ParlaSchema is an incomplete Track 2A submission:** schema/validation
+foundation, synthetic offline demo and partial-negative feasibility report.
+The requested PDF-to-schema converter is not implemented. See the
+[technical report](technical_report.md) for delivered components and limitations.
+
 Submissions must use the Apertus model family.
 For Track 2 this means that submitted solutions must be built with Apertus. Other open-weights models can be used to support development, e.g. as automatic judges during evaluation. Their role must be clearly described in the submission report.
 
@@ -22,28 +27,37 @@ https://hackapertus.notion.site/getting-started-guide-onlinehack
 Keep `track_2a/` as it is: don't rename it or move its files, just delete the
 other track directories.
 
-From the root of the project:
+From the repository root:
 
 ```bash
+cd track_2a
 make run
 ```
 
-Fill in the [Makefile](Makefile) so that it works on a clean checkout. It is
-expected to run the project in a Docker container, since that is how the judges
-will run it, without relying on anything already installed on your machine.
+The [Makefile](Makefile) runs the demo in Docker without local Python or model
+weights. A first build may download public base-image/dependency artifacts.
 
-Requirements: Docker with Docker Compose and access to the provided Apertus
-endpoint. No model weights are required locally.
+The default `make run` is a key-free synthetic replay demo. Its execution
+does not convert PDFs, contact a model or claim extraction quality. Docker with
+Docker Compose is required. The optional live/configuration path needs access
+to the provided Apertus endpoint; no model weights are required locally.
 
-Create a local `.env` from `.env.example` and set:
+The default demo runs `evaluate-blocks` on the tracked synthetic fixture.
+It prints `mode: offline_replay`, `label_status: synthetic`, a denominator of
+3 and counts of 1 correct, 1 abstention and 1 transport error. The error is
+scripted fixture data, not a provider failure; the counts are not model accuracy.
+Make targets ignore `.env` files. Keep real credentials and private data
+outside checkout and Docker context. Export optional LLM settings in your
+shell and validate them separately:
 
-```env
-LLM_NAME=...
-LLM_BASE_URL=...
-LLM_API_KEY=...
+```bash
+make check-config
 ```
 
-`make run` currently validates the Apertus configuration in Docker.
+Missing configuration is reported explicitly by `check-config`; it is not
+needed by the offline demo. Only this explicit target forwards `LLM_NAME`,
+`LLM_BASE_URL` and `LLM_API_KEY` from the shell; it validates configuration
+without contacting the endpoint.
 
 ## Local tests
 
@@ -88,12 +102,25 @@ approved separately before any future live test.
 An [exploratory runner](docs/exploratory-block-test.md) can prepare exactly 18
 private inputs against separate provisional agent labels. `prepare-block-test`
 defaults to no-network dry-run; actual calls require explicit plan-bound
-approval, current prices, a monetary ceiling and `--allow-network`.
+approval, an explicit monetary or confirmed-quota budget and `--allow-network`.
 No live experiment or human gold approval is implied by this tooling.
 
 The [versioned category-word opt-in](docs/category-word-contract.md) accepts one
 strict vocabulary word and serializes the typed result in code. JSON remains the
 default; no autodetection, fallback or retrospective rescoring.
+
+## Current submission scope
+
+This checkout delivers the schema/provenance validation foundation and the
+scoped block-classification/replay precursor. It does **not** deliver the
+requested PDF-to-schema converter, document segmentation/profiles, a verified
+eight-field extraction pipeline, or a verified evaluator. The real Apertus
+diagnostics are a small historical feasibility study: 78 calls across distinct
+diagnostic series, with provisional labels on four known development PDFs and
+no human-approved gold or held-out score. They are reported as separate
+aggregates, never as one accuracy figure or a general model claim. The
+synthetic replay is reproducible from this checkout; private source documents,
+labels, raw responses, approvals and reference drafts are not.
 
 ## CI
 
@@ -150,6 +177,10 @@ Judging criteria also differ by challenge. See the respective challenge descript
 
 
 ## Support
+
+Code: Apache-2.0. Documentation: CC BY 4.0. OpenParlData source metadata:
+CC BY 4.0. These licenses do not authorize third-party PDF/text redistribution
+or model transmission; private references and source rights remain separate.
 
 **Licensing requirements**
 Please check our Terms & Conditions (6. What you build is open source):

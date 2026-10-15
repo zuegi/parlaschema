@@ -1,5 +1,9 @@
 # Explicit category-word-v0.1 opt-in
 
+Preparation descriptions below document the historical method boundaries,
+not authorization to repeat completed experiments. See the
+[technical report](../technical_report.md) for aggregate results and limitations.
+
 `category-json-v0.1` remains the default. Existing JSON requests, category
 definitions, candidate/context semantics and strict parser behavior are preserved.
 Frozen runs are not rewritten or rescored. There is no output autodetection,
