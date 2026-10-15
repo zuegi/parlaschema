@@ -103,7 +103,7 @@ reasons also prevent a completed outcome. These models do not run a pipeline.
 From `track_2a/`:
 
 ```bash
-uv run --frozen python -m openparl_extractor.schema_export schemas/__extraction-v0.1.json
+uv run --frozen python -m openparl_extractor.schema_export schemas/extraction-v0.1.json
 uv run --frozen pytest -q
 ```
 
